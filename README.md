@@ -55,6 +55,8 @@ Endpoint POST **/films/all**
 
 Swagger is running on: http://localhost:3000/api/docs
 
+I also added a Postman collection in the "postman" folder.
+
 ## Deploy
 
 Deploy is running on: https://backend-nest-production-f3dd.up.railway.app/api/
