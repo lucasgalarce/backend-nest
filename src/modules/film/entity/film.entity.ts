@@ -1,15 +1,14 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsOptional, IsString, MaxLength } from '@nestjs/class-validator';
+import { IsNotEmpty, IsOptional, IsString, MaxLength } from 'class-validator';
 import { Column, Entity, ManyToOne } from 'typeorm';
 
 import { EntityBase } from '../../../utils/entity/entity-base';
 import { User } from '../../user/entity/user.entity';
-import { IsBoolean } from 'class-validator';
 
 @Entity()
 export class Film extends EntityBase {
   @ApiProperty({
-    description: 'Title name',
+    description: 'Title of the film',
     type: String,
   })
   @Column({ nullable: false })
@@ -19,22 +18,87 @@ export class Film extends EntityBase {
   title!: string;
 
   @ApiProperty({
-    description: 'description',
-    required: false,
+    description: 'Episode identifier of the film',
+    type: Number,
   })
-  @Column({ nullable: true })
-  @IsString()
-  @IsOptional()
-  description: string;
+  @Column({ nullable: false })
+  @IsNotEmpty()
+  episodeId!: number;
 
   @ApiProperty({
-    description: 'hasBeenWatched',
-    required: false,
+    description: 'Opening crawl text of the film',
+    type: String,
   })
-  @Column({ nullable: true, default: false })
-  @IsBoolean()
-  hasBeenWatched: boolean;
+  @Column('text')
+  @IsString()
+  @IsOptional()
+  openingCrawl: string;
+
+  @ApiProperty({
+    description: 'Director of the film',
+    type: String,
+  })
+  @Column()
+  @IsString()
+  @IsOptional()
+  director: string;
+
+  @ApiProperty({
+    description: 'Producer of the film',
+    type: String,
+  })
+  @Column()
+  @IsString()
+  @IsOptional()
+  producer: string;
+
+  @ApiProperty({
+    description: 'Release date of the film',
+    type: Date,
+  })
+  @Column()
+  releaseDate: Date;
+
+  @ApiProperty({
+    description: 'URLs of characters in the film',
+    type: 'string',
+    isArray: true,
+  })
+  @Column('simple-array')
+  characters: string[];
+
+  @ApiProperty({
+    description: 'URLs of planets featured in the film',
+    type: 'string',
+    isArray: true,
+  })
+  @Column('simple-array')
+  planets: string[];
+
+  @ApiProperty({
+    description: 'URLs of starships featured in the film',
+    type: 'string',
+    isArray: true,
+  })
+  @Column('simple-array')
+  starships: string[];
+
+  @ApiProperty({
+    description: 'URLs of vehicles featured in the film',
+    type: 'string',
+    isArray: true,
+  })
+  @Column('simple-array')
+  vehicles: string[];
+
+  @ApiProperty({
+    description: 'URLs of species featured in the film',
+    type: 'string',
+    isArray: true,
+  })
+  @Column('simple-array')
+  species: string[];
 
   @ManyToOne(() => User, (user: User) => user.films)
-  user: User;
+  createdBy: User;
 }

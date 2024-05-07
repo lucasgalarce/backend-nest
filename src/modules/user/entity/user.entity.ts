@@ -89,7 +89,7 @@ export class User extends EntityBase {
   @IsBoolean()
   enabled = true;
 
-  @OneToMany(() => Film, (film: Film) => film.user)
+  @OneToMany(() => Film, (film: Film) => film.createdBy)
   films?: Film[];
 
   @Column({ nullable: true })
