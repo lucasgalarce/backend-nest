@@ -1,4 +1,3 @@
-import * as bcrypt from 'bcrypt';
 import { ForbiddenException, Inject, Injectable } from '@nestjs/common';
 
 import { UtilsService } from '../../../utils/services/utils.service';

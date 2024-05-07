@@ -30,6 +30,9 @@ import { User } from '../entity/user.entity';
 import { TransformClassToPlain } from '@nestjs/class-transformer';
 import { JwtAuthGuard } from 'src/modules/auth/guard/jwt.guard';
 import { CurrentUser } from 'src/decorators/currentUser.decorator';
+import { RolesGuard } from 'src/modules/auth/guard/role.guard';
+import { Roles } from 'src/utils/decorator/role.decorator';
+import { Role } from 'src/utils/enum/role.enum';
 
 @Controller('/users')
 @ApiTags('Users')
@@ -57,6 +60,8 @@ export class UserController {
   }
 
   @Post('/')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(Role.ADMIN)
   @ApiBody({ type: UserDto, required: true })
   @ApiCreatedResponse({ type: UserDto, description: 'User created' })
   async save(@Body() entity: UserDto): Promise<string> {
