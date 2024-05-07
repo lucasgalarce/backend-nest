@@ -38,7 +38,7 @@ export class UserRepository extends Repository<User> {
       );
     }
     if (role) query.andWhere('user.role = :role', { role });
-    query.leftJoinAndSelect('user.tasks', 'tasks');
+    query.leftJoinAndSelect('user.films', 'films');
 
     const [dataTest, total] = await query.take(take).skip(skip).getManyAndCount();
     const data = dataTest.map((user) => {

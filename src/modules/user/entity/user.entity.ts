@@ -21,7 +21,7 @@ import {
 import { ApiProperty } from '@nestjs/swagger';
 import { Exclude, Expose } from 'class-transformer';
 
-import { Film } from 'src/modules/task/entity/film.entity';
+import { Film } from 'src/modules/film/entity/film.entity';
 import { EntityBase } from '../../../utils/entity/entity-base';
 import { Role } from '../../../utils/enum/role.enum';
 
@@ -89,7 +89,7 @@ export class User extends EntityBase {
   @IsBoolean()
   enabled = true;
 
-  @OneToMany(() => Film, (task: Film) => task.user)
+  @OneToMany(() => Film, (film: Film) => film.user)
   films?: Film[];
 
   @Column({ nullable: true })
