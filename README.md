@@ -38,8 +38,25 @@ body:
 "password": "Admin2121!"
 }
 
+### Creating a New Movie
+
+To create a new movie, you must be logged in as an admin. Use the POST **/films** endpoint, where you will send an object with "id" between 1 and 6. This ID corresponds to the movie number. Information about the movie is fetched using the public Star Wars API and then stored in our database.
+
+### Edit Movie
+
+To update a movie, use the PUT **/films/:filmId** endpoint. You should send an object containing the valid properties of the movie that you want to edit.
+
+### Creation of All Movies
+
+I took the liberty of adding this endpoint, which adds all 6 movies provided by the Star Wars API to our database.
+Endpoint POST **/films/all**
+
 ## Documentation
 
 Swagger is running on: http://localhost:3000/api/docs
 
 ## Deploy
+
+Deploy is running on: https://backend-nest-production-f3dd.up.railway.app/api/
+
+Swagger: https://backend-nest-production-f3dd.up.railway.app/api/docs
